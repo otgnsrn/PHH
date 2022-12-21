@@ -9,7 +9,7 @@ public class DatabaseConnection {
 
     public static Connection getConnection() {
         try {
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/appointment1", "root", "");
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/appointment", "root", "");
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -19,7 +19,7 @@ public class DatabaseConnection {
     public static ObservableList<Appointment> getTimeList(){
         ObservableList<Appointment> TimeList = FXCollections.observableArrayList();
         Connection connection = getConnection();
-        String query = "SELECT * FROM appointment1 ";
+        String query = "SELECT * FROM appointment ";
         Statement st;
         ResultSet rs;
 
@@ -28,7 +28,7 @@ public class DatabaseConnection {
             rs = st.executeQuery(query);
             Appointment appointments;
             while(rs.next()) {
-                appointments = new Appointment(rs.getDate(1), rs.getTime(2),rs.getString(3));
+                appointments = new Appointment(rs.getDate(1), rs.getTime(2));
                 TimeList.add(appointments);
             }
         } catch (Exception e) {

@@ -48,7 +48,7 @@ public class DoctorViewController implements Initializable {
 
     @FXML
     void insert() {
-        String query = "insert into appointment1 values('"+doctorDate.getValue()+"','"+doctorTime.getText()+"')";
+        String query = "insert into appointment values('"+doctorDate.getValue()+"','"+doctorTime.getText()+"')";
         DatabaseConnection.executeQuery(query);
         showTimeTable();
     }
@@ -70,7 +70,7 @@ public class DoctorViewController implements Initializable {
     private void showTimeTable() {
         ObservableList<Appointment> list = DatabaseConnection.getTimeList();
 
-        DoctorName.setCellValueFactory(new PropertyValueFactory<>("doctor   "));
+//        DoctorName.setCellValueFactory(new PropertyValueFactory<>("doctor"));
         DoctorDateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         DoctorTimeColumn.setCellValueFactory(new PropertyValueFactory<>("startTime"));
 
